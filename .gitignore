@@ -1,0 +1,37 @@
+# --------------------
+# App Files
+# --------------------
+node_modules
+npm-debug.log
+bower_components
+coverage
+dist
+make.js
+
+/test/compiler/js/*
+
+client/bower_components
+dist
+server/config
+
+# --------------------
+# OSX Files
+# --------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# --------------------
+# Sublime Text Files
+# --------------------
+*.sublime-project
+*.sublime-workspace
+
+.zip	
+
+!.gitmodules
+!.travis.yml
