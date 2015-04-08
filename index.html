@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/style.css" />
         <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+
 <!--         <link href="css/bootstrap.min.css" rel="stylesheet">
  -->        
         
@@ -19,7 +20,9 @@
 <div style="border: 1px solid red; margin-left: 40px; margin-right: 40px;">
         <div class="container">
             <div class="row">
-               <h1>Timeness!</h1> 
+                <div class="page-header">
+                     <h1>Timeness</h1>
+                </div>   
             </div>
         </div> 
 
@@ -67,10 +70,17 @@
 <br>
 
 <div style="border: 1px solid red; margin-left: 40px; margin-right: 40px;">
+<!--end highlights-->
+<!-- Datepicker -->
+
+<!--end datepicker-->
+
 <form class="form" name="form" ng-submit="TimeLine.mngrTimeLineEventForm(form)">
     <div class="container">
-        <div class="row">
-            <h1>Eventos</h1>                         
+        <div class="row"> 
+            <div class="page-header">
+                 <h1>Eventos</h1>
+            </div>                     
             <button type="button" id="addTimeLineEventButtonId" 
                 class="btn btn-primary" 
                 onclick="TimeLine.addTimeLineEvent()">Criar Evento</button>
@@ -82,9 +92,14 @@
                 onclick="TimeLine.editTimeLineEvent()">Editar Evento</button>
         </div>
         <div class="row">
+            <br>
             <label for="">A</label>
-            <input type="text">
+            <input type="text"> 
+            <br>
             <label for="">B</label>
+            <input type="text">
+            <br>
+            <label for="">C</label>
             <input type="text">
         </div>
     </div>
@@ -111,6 +126,10 @@
         <script src="bower_components/bootstrap/js/tab.js"></script>
         <script src="bower_components/bootstrap/js/affix.js"></script>
         <script src="bower_components/angular/angular.js"></script>
+
+        <script src="bower_components/angular-ui-bootstrap/dist/ui-bootstrap-0.12.1.min.js"></script>
+
+        
         
         <script src="bower_components/d3/d3.min.js"></script>
         

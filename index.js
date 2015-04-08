@@ -1,4 +1,4 @@
-angular.module('timenessApp', [])
+angular.module('timenessApp', ['ui.bootstrap'])
 .controller('MainCtrl', [function($scope, $window){
     $scope.timeness = {};
     $scope.timeness.hello = 'Hello';
