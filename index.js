@@ -1,6 +1,6 @@
 //(function(w){
     //
-d3.json("js/data.json", function(error, data) {
+/*d3.json("js/data.json", function(error, data) {
     // Thats ugly, but required by CSRF security...
     data = data.data;
 
@@ -15,24 +15,25 @@ d3.json("js/data.json", function(error, data) {
         .axisFormat(function(xAxis) {
             xAxis.ticks(5);
         });
-    d3.select('#chart_placeholder2').datum(data).call(eventDropsChart);
+    //d3.select('#chart_placeholder2').datum(data).call(eventDropsChart);
 });
-
+*/
 
 var chartPlaceholder = document.getElementById('chart_placeholder');
+
 var eventNames = ["Matemática",
-    "Física",
-    "Artes plásticas",
-    "Política",
-    "Catástrofes",
-    "Fim dos tempos"
-];
-var data = [];
-var endTime = Date.now();
-var oneMonth = 30 * 24 * 60 * 60 * 1000;
-var startTime = endTime - oneMonth;
+                  "Física",
+                  "Artes plásticas",
+                  "Política",
+                  "Catástrofes",
+                  "Fim dos tempos"];
+
+var data       = [];
+var endTime    = Date.now();
+var oneMonth   = 30 * 24 * 60 * 60 * 1000;
+var startTime  = endTime - oneMonth;
 var middleTime = startTime + ((endTime - startTime) / 2);
-// =============================================================================
+
 // =============================================================================
 var indebugmode = true;
 // -----------------------------------------------------------------------------
@@ -62,7 +63,6 @@ if (indebugmode) {
         data.push(createEvent(eventNames[i]));
     }
 }
-// =============================================================================
 // =============================================================================
 
 var color = d3.scale.category20();
@@ -144,4 +144,9 @@ var zoomIn = function(){
 var zoomOut = function(){
     console.log('Zoom Out YTBI');
 };
+
+
+
+
+
 //})(window);

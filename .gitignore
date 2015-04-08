@@ -15,6 +15,12 @@ dist
 server/config
 
 # --------------------
+# data files
+# --------------------
+dados
+schemas
+
+# --------------------
 # OSX Files
 # --------------------
 .DS_Store
@@ -28,8 +34,8 @@ Icon
 # --------------------
 # Sublime Text Files
 # --------------------
-*.sublime-project
-*.sublime-workspace
+.sublime-project
+.sublime-workspace
 
 .zip	
 
