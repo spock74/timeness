@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<html>
+<html ng-app="timenessApp">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +16,7 @@
     </head>
     <body>
 
+<div style="border: 1px solid red; margin-left: 40px; margin-right: 40px;">
         <div class="container">
             <div class="row">
                <h1>Timeness!</h1> 
@@ -57,6 +58,41 @@
                 <div id="zoomEnd"></div>
             </div>
         </div>
+</div>
+
+<!-- i................ -->
+<!-- Form criar evento -->
+<!-- ................. -->
+<br>
+<br>
+
+<div style="border: 1px solid red; margin-left: 40px; margin-right: 40px;">
+<form class="form" name="form" ng-submit="TimeLine.mngrTimeLineEventForm(form)">
+    <div class="container">
+        <div class="row">
+            <h1>Eventos</h1>                         
+            <button type="button" id="addTimeLineEventButtonId" 
+                class="btn btn-primary" 
+                onclick="TimeLine.addTimeLineEvent()">Criar Evento</button>
+            <button type="button" id="removeTimeLineEventButtonId" 
+                class="btn btn-primary" 
+                onclick="TimeLine.removeTimeLineEvent()">Remover Evento</button>
+            <button type="button" id="editTimeLineEventButtonId" 
+                class="btn btn-primary" 
+                onclick="TimeLine.editTimeLineEvent()">Editar Evento</button>
+        </div>
+        <div class="row">
+            <label for="">A</label>
+            <input type="text">
+            <label for="">B</label>
+            <input type="text">
+        </div>
+    </div>
+</form>
+</div>
+<!-- e................ -->
+<!-- ................. -->
+
 
 
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -74,6 +110,7 @@
         <script src="bower_components/bootstrap/js/scrollspy.js"></script>
         <script src="bower_components/bootstrap/js/tab.js"></script>
         <script src="bower_components/bootstrap/js/affix.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
         
         <script src="bower_components/d3/d3.min.js"></script>
         

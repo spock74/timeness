@@ -1,3 +1,9 @@
+angular.module('timenessApp', [])
+.controller('MainCtrl', [function($scope, $window){
+    $scope.timeness = {};
+    $scope.timeness.hello = 'Hello';
+}]);
+
 //(function(w){
     //
 /*d3.json("js/data.json", function(error, data) {
@@ -144,6 +150,42 @@ var zoomIn = function(){
 var zoomOut = function(){
     console.log('Zoom Out YTBI');
 };
+
+/**
+*
+*
+*
+*
+*
+*/
+var TimeLine = {};
+
+TimeLine.mngrTimeLineEventForm = function(form){
+    console.log('mngrTimeLineEventForm is YTBD');
+};
+
+TimeLine.addTimeLineEvent = function(){
+    //TODO
+    console.log('addTimeLineEvent is YTBD');
+};
+
+TimeLine.removeTimeLineEvent = function(){
+    //TODO
+    console.log('removeTimeLineEvent is YTBD');
+};
+
+TimeLine.editTimeLineEvent = function(){
+    //TODO
+    console.log('editTimeLineEvent is YTBD');
+};
+
+
+
+
+
+
+
+
 
 
 
