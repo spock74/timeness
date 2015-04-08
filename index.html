@@ -12,71 +12,53 @@
     </head>
     <body>
 
-            <div class="container">
-                <div class="row">
-                   <h1>Timeness</h1> 
-                </div>
-            </div> 
-
-            <div class="container">
-                <div class="row">                           
-                    <label for="delimiter">Exibir limites de tempo</label>
-                    <input name="delimiter" type="checkbox" checked="true" onchange="updateDelimiter()">
-                </div>
+        <div class="container">
+            <div class="row">
+               <h1>Timeness</h1> 
             </div>
+        </div> 
 
-            <div class="container">
-                <div class="row">                           
-                    <button type="button" class="btn btn-primary" onclick="addLine()">Adicionar linha</button>
-                    <button type="button" class="btn btn-primary" onclick="removeLine()">Remover linha</button>
-                    <button type="button" class="btn btn-primary" onclick="zoomIn()">Aumentar zoom</button>
-                    <button type="button" class="btn btn-primary" onclick="zoomOut()">Diminuir zoom</button>
-                    <button type="button" class="btn btn-primary" onclick="graph(element)">Reset zoom</button>
-                </div>
+        <div class="container">
+            <div class="row">                           
+                <label for="delimiter">Exibir limites de tempo</label>
+                <input name="delimiter" type="checkbox" checked="true" onchange="updateDelimiter()">
             </div>
-            <!--  -->
-            <!--  -->
-            <!--  -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12" id="chart_placeholder"> </div>
-                </div> <!--row-->
-            </div><!-- /.container -->
-            <!--  -->
-            <!--  -->
-            <div class="container">
-                <div class="row">
-                   <h1>Timeless</h1> 
-                </div>
-            </div> 
-            <!--  -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12" id="chart_placeholder2"> </div>
-                </div> <!--row-->
-            </div><!-- /.container -->
-            <!--  -->
-            <!--  -->
-            <!--  -->
+        </div>
 
-            <div class="container">
-                <div class="row">
-                    <div id="legend"></div>
-                </div>
+        <div class="container">
+            <div class="row">                           
+                <button type="button" class="btn btn-primary" onclick="addLine()">Adicionar linha</button>
+                <button type="button" class="btn btn-primary" onclick="removeLine()">Remover linha</button>
+                <button type="button" class="btn btn-primary" onclick="zoomIn()">Aumentar zoom</button>
+                <button type="button" class="btn btn-primary" onclick="zoomOut()">Diminuir zoom</button>
+                <button type="button" class="btn btn-primary" onclick="graph(element)">Reset zoom</button>
             </div>
+        </div>
 
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="chart_placeholder"> </div>
+            </div> <!--row-->
+        </div>
 
-            <div class="container">
-                <div class="row">
-                    <div id="zoomEnd"></div>
-                </div>
+        <div class="container">
+            <div class="row">
+                <div id="legend"></div>
             </div>
+        </div>
 
 
-                    <script src="js/jquery-1.11.1.min.js"></script>
-                    <script src="js/bootstrap.min.js"></script>
-                    <script src="js/d3.v3.min.js"></script>
-                    <script src="js/eventDrops.js"></script>
-                    <script src="index.js"></script>
-                </body>
-            </html>
+        <div class="container">
+            <div class="row">
+                <div id="zoomEnd"></div>
+            </div>
+        </div>
+
+
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/d3.v3.min.js"></script>
+        <script src="js/eventDrops.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
