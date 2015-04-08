@@ -74,6 +74,26 @@ angular.module('timenessApp').controller('DatepickerDemoCtrl', function ($scope)
 *
 *
 **/
+angular.module('timenessApp').controller('MouseTimeLineInteraciontCtrl', function ($scope) {
+  $scope.MouseTimeLineInteracionMsg1 = 'Hi from MouseTimeLineInteraciontCtrl';
+  $scope.MouseTimeLineInteracionMsg2 = '';
+});
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+//
+//
+//
+//
+//
+// -----------------------------------------------------------------------------
+/**
+*
+*
+*
+*
+*
+*
+**/
 angular.module('timenessApp').controller('PopoverDemoCtrl', function ($scope) {
   $scope.dynamicPopover = 'Hello, World! (vindo do controller!)';
   $scope.dynamicPopoverTitle = '(Título vindo do controller)';
@@ -110,6 +130,10 @@ angular.module('timenessApp').controller('PopoverDemoCtrl', function ($scope) {
 *
 *
 **/
+
+var TimeLine = {};
+
+
 var chartPlaceholder = document.getElementById('chart_placeholder');
 
 var eventNames = ["Matemática",
@@ -195,16 +219,23 @@ graph = d3.chart.eventDrops()
     .eventHover(function(el) {
         var linha = el.parentNode.firstChild.innerHTML;
         var timestamp = d3.select(el).data()[0];
+        
+        //zi
+        TimeLine.mouseOverEventMarker(linha, timestamp);
+        //ze
+        
         document.getElementById('legend').innerHTML = 'Mouse sobre [' + timestamp + '] na série "' + linha + '"';
+        
     })
     .eventZoom(function(scale) {
         var limit = scale.domain();
         var period = parseInt((limit[1] - limit[0]) / (60 * 60 * 1000));
         document.getElementById('zoomEnd').innerHTML = 'Zoom cobrindo um período de "' + period + ' horas"';
-    });
-/*                .eventClick(function (el) {
-                    console.log('clicked');
-                    });*/
+    }) // zei 42
+   .eventClick(function(el, e){
+        console.log('from eventClick')
+   });// zee 42
+    
 var element = d3.select(chartPlaceholder).append('div').datum(data);
 
 graph(element);
@@ -243,9 +274,16 @@ var zoomOut = function(){
 *
 *
 */
-var TimeLine = {};
+
+
+TimeLine.mouseOverEventMarker = function(lin, timest){
+    //TODO
+    console.log('mouseOverEventMarker is YTBI: ' + lin + timest);
+    
+}
 
 TimeLine.mngrTimeLineEventForm = function(form){
+    //TODO
     console.log('mngrTimeLineEventForm is YTBD');
 };
 
