@@ -1,8 +1,84 @@
-angular.module('timenessApp', ['ui.bootstrap'])
-.controller('MainCtrl', [function($scope, $window){
-    $scope.timeness = {};
-    $scope.timeness.hello = 'Hello';
-}]);
+
+/**
+*
+*
+*
+*
+*
+*
+**/
+angular.module('timenessApp', ['ui.bootstrap']);
+// -----------------------------------------------------------------------------
+//
+//
+//
+//
+//
+//
+// -----------------------------------------------------------------------------
+/**
+*
+*
+*
+*
+*
+*
+**/
+angular.module('timenessApp').controller('DatepickerDemoCtrl', function ($scope) {
+  $scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
+
+  $scope.clear = function () {
+    $scope.dt = null;
+  };
+
+  // Disable weekend selection
+  $scope.disabled = function(date, mode) {
+    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+  };
+
+  $scope.toggleMin = function() {
+    $scope.minDate = $scope.minDate ? null : new Date();
+  };
+  $scope.toggleMin();
+
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.opened = true;
+  };
+
+  $scope.dateOptions = {
+    formatYear: 'yy',
+    startingDay: 1
+  };
+
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.format = $scope.formats[0];
+});
+// -----------------------------------------------------------------------------
+//
+//
+//
+//
+//
+// -----------------------------------------------------------------------------
+/**
+*
+*
+*
+*
+*
+*
+**/
+angular.module('timenessApp').controller('PopoverDemoCtrl', function ($scope) {
+  $scope.dynamicPopover = 'Hello, World! (vindo do controller!)';
+  $scope.dynamicPopoverTitle = '(Título vindo do controller)';
+});
+// -----------------------------------------------------------------------------
 
 //(function(w){
     //
@@ -25,6 +101,15 @@ angular.module('timenessApp', ['ui.bootstrap'])
 });
 */
 
+// -----------------------------------------------------------------------------
+/**
+*
+*
+*
+*
+*
+*
+**/
 var chartPlaceholder = document.getElementById('chart_placeholder');
 
 var eventNames = ["Matemática",

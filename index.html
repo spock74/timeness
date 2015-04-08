@@ -6,18 +6,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style.css" />
-        <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
-
-<!--         <link href="css/bootstrap.min.css" rel="stylesheet">
- -->        
-        
+        <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">        
         <title>Timeness</title>
         <style> body { padding-top: 100px; } </style>
+        <style> 
+           .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+        </style>
     </head>
     <body>
 
-<div style="border: 1px solid red; margin-left: 40px; margin-right: 40px;">
+
+
+<div style="border: 1px solid rgb(200,200,200); margin-left: 40px; margin-right: 40px;">
         <div class="container">
             <div class="row">
                 <div class="page-header">
@@ -66,75 +66,179 @@
 <!-- i................ -->
 <!-- Form criar evento -->
 <!-- ................. -->
-<br>
-<br>
 
-<div style="border: 1px solid red; margin-left: 40px; margin-right: 40px;">
-<!--end highlights-->
-<!-- Datepicker -->
+
 
 <!--end datepicker-->
 
-<form class="form" name="form" ng-submit="TimeLine.mngrTimeLineEventForm(form)">
-    <div class="container">
-        <div class="row"> 
-            <div class="page-header">
-                 <h1>Eventos</h1>
-            </div>                     
-            <button type="button" id="addTimeLineEventButtonId" 
-                class="btn btn-primary" 
-                onclick="TimeLine.addTimeLineEvent()">Criar Evento</button>
-            <button type="button" id="removeTimeLineEventButtonId" 
-                class="btn btn-primary" 
-                onclick="TimeLine.removeTimeLineEvent()">Remover Evento</button>
-            <button type="button" id="editTimeLineEventButtonId" 
-                class="btn btn-primary" 
-                onclick="TimeLine.editTimeLineEvent()">Editar Evento</button>
+<div div ng-controller="DatepickerDemoCtrl" style="border: 1px solid rgb(200,200,200); margin-left: 40px; margin-right: 40px; margin-top:40px;" >
+        
+        <div class="container">
+            <div class="row">
+                <div class="page-header">
+                     <h1>Hack</h1>
+                </div>   
+            </div>
+        </div> 
+
+        <div class="container"> 
+            <div class="row">
+                <button type="button" id="addTimeLineEventButtonId" 
+                    class="btn btn-primary" 
+                    onclick="TimeLine.addTimeLineEvent()">Criar Evento</button>
+                <button type="button" id="removeTimeLineEventButtonId" 
+                    class="btn btn-primary" 
+                    onclick="TimeLine.removeTimeLineEvent()">Remover Evento</button>
+                <button type="button" id="editTimeLineEventButtonId" 
+                    class="btn btn-primary" 
+                    onclick="TimeLine.editTimeLineEvent()">Editar Evento</button>
+            </div>
         </div>
-        <div class="row">
-            <br>
-            <label for="">A</label>
-            <input type="text"> 
-            <br>
-            <label for="">B</label>
-            <input type="text">
-            <br>
-            <label for="">C</label>
-            <input type="text">
+        
+        <div class="container">    
+            <div class="row">
+                <div class="col-md-12">
+                    <label>Pop up</label>
+                    <p class="input-group">
+                      <input type="text" class="form-control" datepicker-popup="{{format}}" 
+                      ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" 
+                      datepicker-options="dateOptions" date-disabled="disabled(date, mode)" 
+                      ng-required="true" close-text="Close">
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </p>
+                </div>    
+            </div>
         </div>
-    </div>
-</form>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <label>Formato:</label> 
+                    <select class="form-control" ng-model="format" ng-options="f for f in formats">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        <br>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">             
+                    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Hoje</button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="dt = '24-08-2009'">24-08-2009</button>
+                    <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Limpar</button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" tooltip="Após a restrição 'hoje'">Data mínima</button>
+                </div>
+            </div>
+        <br>
+        </div>
+
+       
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"> 
+                    <pre>A data selecionada é: <em>{{dt | date:'fullDate' }}</em></pre>
+                </div>
+            </div>
+        </div>
+        <hr />       
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">   
+                    <form class="form" name="form" ng-submit="TimeLine.mngrTimeLineEventForm(form)">
+                        <label class="form-control">A</label>
+                        <input class="form-control" type="text"> 
+                        <br>
+                        <label class="form-control">B</label>
+                        <input class="form-control" type="text">
+                        <br>
+                        <label class="form-control">C</label>
+                        <input class="form-control"type="text">
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
 </div>
+
 <!-- e................ -->
 <!-- ................. -->
 
 
+    
+<div style="border: 1px solid rgb(200,200,200); margin-left: 40px; margin-right: 40px; margin-top: 40px;">
+<!-- i 43............. -->
+        <!-- ................. -->
+        <div class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="page-header">
+                         <h1>Pop up's</h1>
+                    </div>   
+                </div>
+            </div>
+        </div>
 
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        
+
+        <div class="container"> 
+            <div class="row">
+                <div class="col-md-12">
+                    <div ng-controller="PopoverDemoCtrl">
+                        <h4>Pop up Dinâmico</h4>
+                        <div class="form-group">
+                          <label>Texto do Popup:</label>
+                          <input type="text" ng-model="dynamicPopover" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label>Título do pop up:</label>
+                          <input type="text" ng-model="dynamicPopoverTitle" class="form-control">
+                        </div>
+                        <button popover="{{dynamicPopover}}" popover-title="{{dynamicPopoverTitle}}" class="btn btn-default">Popover Dinâmico</button>
+                        
+                        <hr />
+                        <h4>Pop upPosicional</h4>
+                        <button popover-placement="top" popover="Acima!" class="btn btn-default">Acima</button>
+                        <button popover-placement="left" popover="À Esquerda!" class="btn btn-default">Esquerda</button>
+                        <button popover-placement="right" popover="À direita!" class="btn btn-default">Direita</button>
+                        <button popover-placement="bottom" popover="Olhar para Baixo!" class="btn btn-default">Abaixo</button>
+                        
+                        <hr />
+                        <h4>Pop up com 'Gatilho'</h4>
+                        <p>
+                          <button popover="Aparecer com chegada do mouse!" popover-trigger="mouseenter" class="btn btn-default">Mouse In</button>
+                        </p>
+                        <input type="text" value="Click em mim!" popover="Aparecer quando receber foco! Click Fora Para Apagar..."  popover-trigger="focus" class="form-control">
+
+                        <hr />
+                        <h4>Outro</h4>
+                        <button Popover-animation="true" popover="Aparecer e desaparecer com efeito de esmaecimento!" class="btn btn-default">Esmaecer</button>
+                        <button popover="Aqui o título!" popover-title="O Título." class="btn btn-default">Título</button>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- e43............... -->
+<!-- .................. -->
+
+        <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="bower_components/bootstrap/js/transition.js"></script>
-        <script src="bower_components/bootstrap/js/alert.js"></script>
-        <script src="bower_components/bootstrap/js/button.js"></script>
-        <script src="bower_components/bootstrap/js/carousel.js"></script>
-        <script src="bower_components/bootstrap/js/collapse.js"></script>
-        <script src="bower_components/bootstrap/js/dropdown.js"></script>
-        <script src="bower_components/bootstrap/js/modal.js"></script>
-        <script src="bower_components/bootstrap/js/tooltip.js"></script>
-        <script src="bower_components/bootstrap/js/popover.js"></script>
-        <script src="bower_components/bootstrap/js/scrollspy.js"></script>
-        <script src="bower_components/bootstrap/js/tab.js"></script>
-        <script src="bower_components/bootstrap/js/affix.js"></script>
         <script src="bower_components/angular/angular.js"></script>
-
-        <script src="bower_components/angular-ui-bootstrap/dist/ui-bootstrap-0.12.1.min.js"></script>
-
-        
+        <script src="bower_components/angular-ui-bootstrap/dist/ui-bootstrap-0.12.1.js"></script>
         
         <script src="bower_components/d3/d3.min.js"></script>
         
         <script src="bower_components/event-drops/src/eventDrops.js"></script>
         
         <script src="index.js"></script>
+    
     </body>
 </html>
