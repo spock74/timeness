@@ -293,11 +293,19 @@
     fill-opacity: 1;
   }
   </style>
-</head>
-<body>
-  <div id="graph">
 
-  </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12"> 
+            <div class="page-header">
+                 <h1>Hacking</h1>
+            </div>  
+            <div id="graph" ></div>
+        </div>
+    </div>
+</div>
+
+
   <script type="text/javascript">
     var tip = d3.tip()
       .attr('class', 'd3-tip')
@@ -334,7 +342,7 @@
       .call(xAxis)
       .selectAll('.x.axis g')
       .style('display', function (d, i) { 
-        return i % 3 != 0  ? 'none' : 'block' 
+        return i % 3 !== 0  ? 'none' : 'block' ;
       });
 
     var bars = vis.selectAll('g.bar')
