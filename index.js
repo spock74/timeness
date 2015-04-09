@@ -209,7 +209,7 @@ var locale = d3.locale({
     "decimal": ".",
     "thousands": " ",
     "grouping": [3],
-    "dateTime": "%A %e %B %Y, %X",
+    "dateTime": "%x, %X",
     "date": "%d/%m/%Y",
     "time": "%H:%M",
     "periods": ["AM", "PM"],
@@ -324,19 +324,42 @@ var zoomOut = function(){
 *
 *
 */
-var test;
+var circulo;
+var registrado = false;
 
+function simulateClick(elem) {
+  var evt = new MouseEvent("click", {
+    bubbles: true,
+    cancelable: true,
+    view: window,
+  });
+  var cb = elem; //element to click on
+  var canceled = !cb.dispatchEvent(evt);
+}
 
 
 TimeLine.mouseClickEventMarker = function(el){
     //TODO
     console.log('mouseClickEventMarker. el: ', el.nodeName);
     
-    if(el.nodeName === 'circle'){
-        test = d3.select(el).attr('r', '50');  
+    if(el.nodeName !== 'circle'){
+        return;
+    }    
+
+
+    d3.select(el).on('mouseover');    
+
+    
+    if(!registrado){
+      el.addEventListener('click', simulateClick(el));
+      registrado = true;
     }
-      // this handler will be executed only once when the cursor moves off the unordered list
+    
+    circulo = d3.select(el).attr('r', '50');  
+    
+    registrado = false;
 };
+
 
 TimeLine.mouseLeaveEventMarker = function(el){
     console.log('mouseLeaveEventMarker is YTBI: ');

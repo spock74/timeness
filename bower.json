@@ -27,6 +27,7 @@
     "d3": "~3.5.5",
     "bootstrap": "~3.3.4",
     "angular-ui-bootstrap": "~0.12.1",
-    "EventDrops": "spock74/EventDrops#~0.1.1"
+    "EventDrops": "spock74/EventDrops#~0.1.1",
+    "d3-tip": "~0.6.6"
   }
 }
