@@ -273,13 +273,13 @@ graph = d3.chart.eventDrops()
 
     }) 
    .eventClick(function(el){
-    console.log('el click ', el);
+/*    console.log('el click ', el);
       linha = el.parentNode.firstChild.innerHTML;
       var timestamp = d3.select(el).data()[0];
       document.getElementById('legend').innerHTML = 'Mouse sobre [' + timestamp + '] na série "' + linha + '"';
 
 
-      TimeLine.mouseClickEventMarker(el);
+      //TimeLine.mouseClickEventMarker(el);*/
    })
    .eventLeave(function(el){
        TimeLine.mouseLeaveEventMarker(el);
@@ -342,7 +342,7 @@ TimeLine.mouseClickEventMarker = function(el){
     //TODO
     console.log('mouseClickEventMarker. el: ', el.nodeName);
     
-    if(el.nodeName !== 'circle'){
+/*    if(el.nodeName !== 'circle'){
         return;
     }    
 
@@ -357,7 +357,7 @@ TimeLine.mouseClickEventMarker = function(el){
     
     circulo = d3.select(el).attr('r', '50');  
     
-    registrado = false;
+    registrado = false;*/
 };
 
 
