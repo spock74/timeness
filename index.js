@@ -141,7 +141,27 @@ var eventNames = ["Matemática",
                   "Artes plásticas",
                   "Política",
                   "Catástrofes",
-                  "Fim dos tempos"];
+                  "Fim dos tempos",
+                  "Dia seguinte ao Fim dos Tempos",
+                  "Outro dia depois de ontem",
+                  "O dia em que a Terra parou",
+                  "Diretas Já",
+                  "Coraçao de Estudante",
+                  "Marimbondos de Fogo",
+                  "Collors around",
+                  "Zélia I",
+                  "Zéli II",
+                  "Confisco",
+                  "Sem Fisco",
+                  "Pão de queijo e topete",
+                  "Unidade Real Virtal",
+                  "Virtualmente Real",
+                  "Esqueçam o que eu disse I",
+                  "Esqueçam o que eu disse II",
+                  "Don Vito I",
+                  "Don Vito II",
+                  "Don Vito III",
+                  "Don Vito IV"];
 
 var data       = [];
 var endTime    = Date.now();
@@ -180,6 +200,10 @@ if (indebugmode) {
 }
 // =============================================================================
 
+        var linha;
+        var timestamp;
+
+
 var color = d3.scale.category20();
 var locale = d3.locale({
     "decimal": ".",
@@ -194,6 +218,10 @@ var locale = d3.locale({
     'months': ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'agosto', 'novembro', 'dezembro'],
     'shortMonths': ['jan.', 'fev.', 'mar.', 'abr.', 'mai.', 'jun.', 'jul.', 'ago.', 'set.', 'out.', 'nov.', 'dec.']
 });
+
+var linha ;
+
+
 graph = d3.chart.eventDrops()
     .start(new Date(startTime))
     .end(new Date(endTime))
@@ -206,34 +234,55 @@ graph = d3.chart.eventDrops()
         }
         return 'red';
     })
-    .width(800)
+    .width(1000)
     .margin({
         top: 100,
-        left: 200,
-        bottom: 0,
-        right: 0
+        left: 250,
+        bottom: 40,
+        right: 40
     })
     .axisFormat(function(xAxis) {
         xAxis.ticks(5);
     })
     .eventHover(function(el) {
-        var linha = el.parentNode.firstChild.innerHTML;
+        
+
+        if(el.nodeName !== 'circle'){
+          return;
+        }
+
+        linha = el.parentNode.firstChild.innerHTML;
+
         var timestamp = d3.select(el).data()[0];
-        
-        //zi
-        TimeLine.mouseOverEventMarker(linha, timestamp);
-        //ze
-        
         document.getElementById('legend').innerHTML = 'Mouse sobre [' + timestamp + '] na série "' + linha + '"';
-        
+
+        //zi
+        TimeLine.mouseOverEventMarker(el, timestamp);
+        //ze
+
     })
     .eventZoom(function(scale) {
         var limit = scale.domain();
         var period = parseInt((limit[1] - limit[0]) / (60 * 60 * 1000));
         document.getElementById('zoomEnd').innerHTML = 'Zoom cobrindo um período de "' + period + ' horas"';
-    }) // zei 42
-   .eventClick(function(el, e){
-        console.log('from eventClick')
+
+
+        //var limit = scale.domain();
+        //var period = parseInt((limit[1] - limit[0]) / (60 * 60 * 1000) );
+        //document.getElementById('zoomEnd').innerHTML = 'Zoomed on a period of "' + period + ' hours"';
+
+    }) 
+   .eventClick(function(el){
+    console.log('el click ', el);
+      linha = el.parentNode.firstChild.innerHTML;
+      var timestamp = d3.select(el).data()[0];
+      document.getElementById('legend').innerHTML = 'Mouse sobre [' + timestamp + '] na série "' + linha + '"';
+
+
+      TimeLine.mouseClickEventMarker(el);
+   })
+   .eventLeave(function(el){
+       TimeLine.mouseLeaveEventMarker(el);
    });// zee 42
     
 var element = d3.select(chartPlaceholder).append('div').datum(data);
@@ -260,7 +309,8 @@ var removeLine = function() {
 };
 
 var zoomIn = function(){
-    console.log('Zoom In YTBI');
+   console.log('Zoom In YTBI');
+   d3.chart.eventDrops().eventZoom();
 };
 
 var zoomOut = function(){
@@ -274,13 +324,38 @@ var zoomOut = function(){
 *
 *
 */
+var test;
 
 
-TimeLine.mouseOverEventMarker = function(lin, timest){
+
+TimeLine.mouseClickEventMarker = function(el){
     //TODO
-    console.log('mouseOverEventMarker is YTBI: ' + lin + timest);
+    console.log('mouseClickEventMarker. el: ', el.nodeName);
     
-}
+    if(el.nodeName === 'circle'){
+        test = d3.select(el).attr('r', '50');  
+    }
+      // this handler will be executed only once when the cursor moves off the unordered list
+};
+
+TimeLine.mouseLeaveEventMarker = function(el){
+    console.log('mouseLeaveEventMarker is YTBI: ');
+
+    if(el.nodeName === 'circle'){
+        test = d3.select(el).attr('r', '10');  
+    }
+};
+
+TimeLine.mouseOverEventMarker = function(el, timeStamp){
+    //TODO
+
+    console.log('mouseOverEventMarker. el: ', el);
+    
+    if(el.nodeName === 'circle'){
+        test = d3.select(el).attr('r', '100');  
+    }
+    
+};
 
 TimeLine.mngrTimeLineEventForm = function(form){
     //TODO
@@ -305,6 +380,19 @@ TimeLine.editTimeLineEvent = function(){
 
 
 
+  
+  
+/*  // this handler will be executed only once when the cursor moves over the unordered list
+  test.addEventListener("mouseenter", function( event ) {   
+    // highlight the mouseenter target
+    event.target.style.color = "purple";
+
+    // reset the color after a short delay
+    setTimeout(function() {
+      event.target.style.color = "";
+    }, 500);
+  }, false);
+*/
 
 
 
