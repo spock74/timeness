@@ -134,6 +134,7 @@ angular.module('timenessApp').controller('PopoverDemoCtrl', function ($scope) {
 var TimeLine = {};
 
 
+
 var chartPlaceholder = document.getElementById('chart_placeholder');
 
 var eventNames = ["Matemática",
@@ -200,8 +201,8 @@ if (indebugmode) {
 }
 // =============================================================================
 
-        var linha;
-        var timestamp;
+var linha;
+var timestamp;
 
 
 var color = d3.scale.category20();
@@ -219,8 +220,11 @@ var locale = d3.locale({
     'shortMonths': ['jan.', 'fev.', 'mar.', 'abr.', 'mai.', 'jun.', 'jul.', 'ago.', 'set.', 'out.', 'nov.', 'dec.']
 });
 
-var linha ;
+var ti = d3.tip()
+           .attr('class', 'd3-tip')
+           .html(function(d) { return d; });
 
+console.log("ti: ", ti);           
 
 graph = d3.chart.eventDrops()
     .start(new Date(startTime))
@@ -256,39 +260,33 @@ graph = d3.chart.eventDrops()
         var timestamp = d3.select(el).data()[0];
         document.getElementById('legend').innerHTML = 'Mouse sobre [' + timestamp + '] na série "' + linha + '"';
 
-        //zi
         TimeLine.mouseOverEventMarker(el, timestamp);
-        //ze
-
     })
     .eventZoom(function(scale) {
         var limit = scale.domain();
         var period = parseInt((limit[1] - limit[0]) / (60 * 60 * 1000));
         document.getElementById('zoomEnd').innerHTML = 'Zoom cobrindo um período de "' + period + ' horas"';
-
-
-        //var limit = scale.domain();
-        //var period = parseInt((limit[1] - limit[0]) / (60 * 60 * 1000) );
-        //document.getElementById('zoomEnd').innerHTML = 'Zoomed on a period of "' + period + ' hours"';
-
     }) 
    .eventClick(function(el){
-/*    console.log('el click ', el);
+    console.log('el click: ', el);
       linha = el.parentNode.firstChild.innerHTML;
       var timestamp = d3.select(el).data()[0];
       document.getElementById('legend').innerHTML = 'Mouse sobre [' + timestamp + '] na série "' + linha + '"';
 
+      TimeLine.mouseClickEventMarker(el);
 
-      //TimeLine.mouseClickEventMarker(el);*/
    })
    .eventLeave(function(el){
        TimeLine.mouseLeaveEventMarker(el);
    });// zee 42
-    
+
+//    
 var element = d3.select(chartPlaceholder).append('div').datum(data);
 
+//
 graph(element);
 
+//
 var updateDelimiter = function(value) {
     graph.hasDelimiter(!graph.hasDelimiter())(element);
 }; 
@@ -324,44 +322,49 @@ var zoomOut = function(){
 *
 *
 */
+
+
+
+
+
+
+
+
+
+
+
+
 var circulo;
 var registrado = false;
-
-function simulateClick(elem) {
-  var evt = new MouseEvent("click", {
-    bubbles: true,
-    cancelable: true,
-    view: window,
-  });
-  var cb = elem; //element to click on
-  var canceled = !cb.dispatchEvent(evt);
-}
-
-
+/* ----------------------------------------------------------------------- */
 TimeLine.mouseClickEventMarker = function(el){
     //TODO
     console.log('mouseClickEventMarker. el: ', el.nodeName);
     
-/*    if(el.nodeName !== 'circle'){
+    if(el.nodeName !== 'circle'){
         return;
     }    
 
 
-    d3.select(el).on('mouseover');    
+    //d3.select(el).on('mouseover');    
 
     
-    if(!registrado){
-      el.addEventListener('click', simulateClick(el));
-      registrado = true;
-    }
+      //el.addEventListener('click', simulateClick(el));
+        circulo = d3.select(el);//.attr('r', '50');
+
+
+        registrado = true;
     
-    circulo = d3.select(el).attr('r', '50');  
-    
-    registrado = false;*/
+    registrado = false;
 };
+/* ----------------------------------------------------------------------- */
+
+
+
 
 
 TimeLine.mouseLeaveEventMarker = function(el){
+  
     console.log('mouseLeaveEventMarker is YTBI: ');
 
     if(el.nodeName === 'circle'){
@@ -369,14 +372,25 @@ TimeLine.mouseLeaveEventMarker = function(el){
     }
 };
 
+
 TimeLine.mouseOverEventMarker = function(el, timeStamp){
-    //TODO
 
     console.log('mouseOverEventMarker. el: ', el);
     
-    if(el.nodeName === 'circle'){
-        test = d3.select(el).attr('r', '100');  
-    }
+/*    if(el.nodeName === 'circle'){
+        test = d3.select(el).attr('r', '50')
+                 .on("mouseenter");
+    }*/
+
+// this handler will be executed only once when the cursor moves over the unordered list
+d3.selectAll('circle').on("mouseenter", function( event ) {   
+  // highlight the mouseenter target
+  d3.select(event.target).attr('r', 50);
+}, false); // false: does not bubble
+
+
+
+
     
 };
 
@@ -399,23 +413,6 @@ TimeLine.editTimeLineEvent = function(){
     //TODO
     console.log('editTimeLineEvent is YTBD');
 };
-
-
-
-
-  
-  
-/*  // this handler will be executed only once when the cursor moves over the unordered list
-  test.addEventListener("mouseenter", function( event ) {   
-    // highlight the mouseenter target
-    event.target.style.color = "purple";
-
-    // reset the color after a short delay
-    setTimeout(function() {
-      event.target.style.color = "";
-    }, 500);
-  }, false);
-*/
 
 
 
