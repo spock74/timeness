@@ -388,11 +388,7 @@ TimeLine.editTimeLineEvent = function(){
     console.log('editTimeLineEvent is YTBD');
 };
 
-(function(){}());
-
-
-
-
 
 
 })(window.angular);
+
