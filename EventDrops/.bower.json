@@ -1,0 +1,14 @@
+{
+  "name": "EventDrops",
+  "homepage": "https://github.com/spock74/EventDrops",
+  "version": "0.1.1",
+  "_release": "0.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.1",
+    "commit": "ceae9d85de140a03248ba504d6f4bda66ae4139b"
+  },
+  "_source": "git://github.com/spock74/EventDrops.git",
+  "_target": "~0.1.1",
+  "_originalSource": "spock74/EventDrops"
+}
