@@ -2,9 +2,20 @@
 
 'use strict';
 
-var app = angular.module('timenessApp', ['ui.bootstrap']);
+var app = angular.module('timenessApp', ['ui.bootstrap', 'd3serviceMod']);
 // -----------------------------------------------------------------------------
 
+
+app.config('d3Service', ['$document', '$window', function ($document, $window, $routeProvider, $locationProvider, $httpProvider) {
+    $routeProvider
+      .otherwise({
+        redirectTo: '/'
+      });
+
+    $locationProvider.html5Mode(true);
+    $httpProvider.interceptors.push('authInterceptor');
+  }]);
+        
 /**
 *
 *
@@ -209,7 +220,7 @@ var locale = d3.locale({
     "periods": ["AM", "PM"],
     "days": ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"],
     "shortDays": ["dom.", "seg.", "ter.", "qua.", "qui.", "sex.", "sab."],
-    'months': ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'agosto', 'novembro', 'dezembro'],
+    'months': ['Janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'agosto', 'novembro', 'dezembro'],
     'shortMonths': ['jan.', 'fev.', 'mar.', 'abr.', 'mai.', 'jun.', 'jul.', 'ago.', 'set.', 'out.', 'nov.', 'dec.']
 });
 
@@ -217,7 +228,7 @@ var locale = d3.locale({
            .attr('class', 'd3-tip')
            .html(function(d) { return d; }); */       
 
-graph = d3.chart.eventDrops()
+var graph = d3.chart.eventDrops()
     .start(new Date(startTime))
     .end(new Date(endTime))
     .minScale(0.5)
@@ -348,24 +359,14 @@ TimeLine.mouseLeaveEventMarker = function(el){
 
 
 TimeLine.mouseOverEventMarker = function(el, timeStamp){
-
+    
+    /* 
     console.log('mouseOverEventMarker. el: ', el);
     
-/*    if(el.nodeName === 'circle'){
+   if(el.nodeName === 'circle'){
         test = d3.select(el).attr('r', '50')
                  .on("mouseenter");
     }*/
-
-// this handler will be executed only once when the cursor moves over the unordered list
-d3.selectAll('circle').on("mouseenter", function( event ) {   
-  // highlight the mouseenter target
-  d3.select(event.target).attr('r', 50);
-}, false); // false: does not bubble
-
-
-
-
-    
 };
 
 TimeLine.mngrTimeLineEventForm = function(form){

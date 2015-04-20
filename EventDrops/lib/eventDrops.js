@@ -125,7 +125,7 @@ module.exports = function (d3) {
           });
         }
 
-        if (typeof config.evenClick === 'function') {
+        if (typeof config.eventClick === 'function') {
           zoomRect.on('click', function(d, e) {
             var event = d3.event;
             if (curx == event.clientX && cury == event.clientY) return;
